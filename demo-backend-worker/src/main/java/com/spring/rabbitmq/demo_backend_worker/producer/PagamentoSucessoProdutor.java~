@@ -1,0 +1,14 @@
+package com.spring.rabbitmq.demo_backend_worker.producer;
+
+@Service
+public class PagamentoSucessoProdutor {
+    @Autowired
+    private AmqpTemplate amqpTemplate;
+
+    public void gerarResposta(String mensagem){
+        amqpTemplate.convertAndSend(
+                "pagamento-response-sucesso-exchange",
+                "pagamento-response-sucesso-rout-key",
+                mensagem);
+    }
+}
